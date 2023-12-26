@@ -1,5 +1,9 @@
 package com.etiya;
 
+import com.etiya.business.concretes.BrandServiceImpl;
+import com.etiya.business.dtos.requests.CreateBrandRequest;
+import com.etiya.dataAccess.concretes.BrandRepositoryImpl;
+import com.etiya.dataAccess.concretes.BrandRepositoryImplHibernate;
 import com.etiya.entities.Brand;
 import com.etiya.entities.Car;
 import com.etiya.entities.Model;
@@ -24,5 +28,10 @@ public class Main {
         car2.setId(2);
         car2.setPlate("06ABC02");
         car2.setModel(model1);
+
+        CreateBrandRequest request=new CreateBrandRequest();
+        request.setName("BMW");
+        BrandServiceImpl brandService=new BrandServiceImpl(new BrandRepositoryImplHibernate());
+        brandService.add(request);
     }
 }
