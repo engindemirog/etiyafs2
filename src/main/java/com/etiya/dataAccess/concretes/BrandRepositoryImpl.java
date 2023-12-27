@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public class BrandRepositoryImpl implements BrandRepository {
     List<Brand> brands;
@@ -46,5 +47,11 @@ public class BrandRepositoryImpl implements BrandRepository {
     @Override
     public List<Brand> getAll() {
         return brands;
+    }
+
+    @Override
+    public Optional<Brand> getByName(String name) {
+        Optional<Brand> currentBrand = this.brands.stream().filter(brand -> brand.getName().equals(name)).findFirst();
+        return currentBrand;
     }
 }
