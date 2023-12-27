@@ -4,11 +4,13 @@ import com.etiya.business.concretes.BrandServiceImpl;
 import com.etiya.business.dtos.requests.CreateBrandRequest;
 import com.etiya.business.dtos.responses.CreatedBrandResponse;
 import com.etiya.business.dtos.responses.GetAllBrandResponse;
+import com.etiya.core.utilities.mapping.ModelMapperManager;
 import com.etiya.dataAccess.concretes.BrandRepositoryImpl;
 import com.etiya.dataAccess.concretes.BrandRepositoryImplHibernate;
 import com.etiya.entities.Brand;
 import com.etiya.entities.Car;
 import com.etiya.entities.Model;
+import org.modelmapper.ModelMapper;
 
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class Main {
 
         CreateBrandRequest request=new CreateBrandRequest();
         request.setName("Opel");
-        BrandServiceImpl brandService=new BrandServiceImpl(new BrandRepositoryImpl());
+        BrandServiceImpl brandService=new BrandServiceImpl(new BrandRepositoryImpl(),new ModelMapperManager(new ModelMapper()));
         CreatedBrandResponse response = brandService.add(request);
         System.out.println(response.getName());
         System.out.println("--------------------------------------");
